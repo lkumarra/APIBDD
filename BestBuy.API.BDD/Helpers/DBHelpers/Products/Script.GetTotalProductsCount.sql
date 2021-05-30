@@ -1,0 +1,1 @@
+﻿select products.id as total from products

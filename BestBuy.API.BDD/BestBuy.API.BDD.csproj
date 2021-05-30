@@ -23,14 +23,18 @@
 
 
 
+		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+
+
+
+
+
 		<PackageReference Include="System.Data.SQLite" Version="1.0.114.2" />
 
 	</ItemGroup>
 
 	<ItemGroup>
 		<Folder Include="Drivers\" />
-		<Folder Include="Helpers\APIHelpers\" />
-		<Folder Include="Hooks\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -38,7 +42,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="Helpers\DBHelpers\Products\Script.GetCategoriesFilterd.sql">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Helpers\DBHelpers\Products\Script.GetProducts.sql">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Helpers\DBHelpers\Products\Script.GetTotalProductsCount.sql">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

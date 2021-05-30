@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BestBuy.API.BDD.Modals.GetProducts
 {
-    class GetProductsModal
+    class GetProductsModal 
     {
         public int total { get; set; }
         public int limit { get; set; }
@@ -35,27 +35,67 @@ namespace BestBuy.API.BDD.Modals.GetProducts
 
     class Category
     {
+        public long productid { get; set; }
         public string id { get; set; }
         public string name { get; set; }
-        public DateTime createdAt { get; set; }
-        public DateTime updatedAt { get; set; }
+        public string createdAt { get; set; }
+        public string updatedAt { get; set; }
     }
 
     class Datum
     {
-        public int id { get; set; }
+        public long id { get; set; }
         public string name { get; set; }
         public string type { get; set; }
-        public double price { get; set; }
+        public decimal price { get; set; }
         public string upc { get; set; }
-        public int shipping { get; set; }
+        public decimal shipping { get; set; }
         public string description { get; set; }
         public string manufacturer { get; set; }
         public string model { get; set; }
         public string url { get; set; }
         public string image { get; set; }
-        public DateTime createdAt { get; set; }
-        public DateTime updatedAt { get; set; }
+        public string createdAt { get; set; }
+        public string updatedAt { get; set; }
         public List<Category> categories { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Datum datum &&
+                   id == datum.id &&
+                   name == datum.name &&
+                   type == datum.type &&
+                   price == datum.price &&
+                   upc == datum.upc &&
+                   shipping == datum.shipping &&
+                   description == datum.description &&
+                   manufacturer == datum.manufacturer &&
+                   model == datum.model &&
+                   url == datum.url &&
+                   image == datum.image &&
+                   createdAt == datum.createdAt &&
+                   updatedAt == datum.updatedAt &&
+                   EqualityComparer<List<Category>>.Default.Equals(categories, datum.categories);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -538890732;
+            hashCode = hashCode * -1521134295 + id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(type);
+            hashCode = hashCode * -1521134295 + price.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(upc);
+            hashCode = hashCode * -1521134295 + shipping.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(description);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(manufacturer);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(model);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(url);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(image);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(createdAt);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(updatedAt);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<Category>>.Default.GetHashCode(categories);
+            return hashCode;
+        }
     }
 }

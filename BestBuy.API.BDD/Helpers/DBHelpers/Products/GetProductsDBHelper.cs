@@ -18,5 +18,17 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Products
             string script = File.ReadAllText(ScriptPath + "Script.GetProducts.sql");
             return ExecuteDBWrapper.ExecuteQuery(script);
         }
+
+        public static DataTable GetFilterdCategories()
+        {
+            string script = File.ReadAllText(ScriptPath + "Script.GetCategoriesFilterd.sql");
+            return ExecuteDBWrapper.ExecuteQuery(script);
+        }
+
+        public static int GetTotalProductsCount()
+        {
+            string script = File.ReadAllText(ScriptPath + "Script.GetTotalProductsCount.sql");
+            return ExecuteDBWrapper.ExecuteQuery(script).Rows.Count;
+        }
     }
 }
