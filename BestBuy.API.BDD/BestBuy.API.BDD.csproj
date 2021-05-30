@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="nunit" Version="3.13.1" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+		<PackageReference Include="FluentAssertions" Version="5.10.3" />
+		<PackageReference Include="SpecFlow" Version="3.1.86" />
+		<PackageReference Include="SpecFlow.NUnit" Version="3.1.86" />
+
+
+
+
+
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.86" />
+
+
+
+
+
+		<PackageReference Include="System.Data.SQLite" Version="1.0.114.2" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Drivers\" />
+		<Folder Include="Helpers\APIHelpers\" />
+		<Folder Include="Hooks\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="System.Net.Http" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Helpers\DBHelpers\Products\Script.GetProducts.sql">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	
+</Project>
