@@ -2,6 +2,7 @@
 using BestBuy.API.BDD.Helpers.DBHelpers.Products;
 using BestBuy.API.BDD.Modals.GetProducts;
 using Newtonsoft.Json;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,22 +27,7 @@ namespace BestBuy.API.BDD.API.Products
         public void VerifyProductsFromDB()
         {
             GetProductsModal actualResponse = JsonConvert.DeserializeObject<GetProductsModal>(_resposeWrapper.Content);
-            for (int i = 0; i<actualResponse.data.Count; i++)
-            {
-                for (int j = 0; j<actualResponse.data[i].categories.Count; j++)
-                {
-                    actualResponse.data[i].categories[j].productid = actualResponse.data[i].id;
-                }
-            }
             DataTable table = GetProductsDBHelper.GetAllProductsFromDB();
-            List<Category> categoriesList = GetProductsDBHelper.GetFilterdCategories().AsEnumerable().Select(x => new Category()
-            {
-                productid = x.Field<long>("productid"),
-                id = x.Field<string>("id"),
-                name = x.Field<string>("name"),
-                createdAt = x.Field<string>("createdAt"),
-                updatedAt = x.Field<string>("updatedAt")
-            }).OrderBy(y => y.id).ToList();
             List<Datum> data = table.AsEnumerable().Select(r => new Datum()
             {
                 id = r.Field<long>("id"),
@@ -55,9 +41,9 @@ namespace BestBuy.API.BDD.API.Products
                 model = r.Field<string>("model"),
                 url = r.Field<string>("url"),
                 image = r.Field<string>("image"),
-                createdAt = r.Field<string>("createdAt"),
-                updatedAt = r.Field<string>("updatedAt"),
-                categories = categoriesList.Where(x => x.productid == r.Field<long>("id")).ToList()
+                createdAt = r.Field<string>("createdAt").Replace(" +00:00","Z").Replace(" ","T"),
+                updatedAt = r.Field<string>("updatedAt").Replace(" +00:00", "Z").Replace(" ", "T"),
+                categories = GetProductsDBHelper.GetFilterdCategories(r.Field<long>("id"))
             }).ToList();
             GetProductsModal expectedResponse = new GetProductsModal()
             {
@@ -68,7 +54,7 @@ namespace BestBuy.API.BDD.API.Products
             };
             if (!actualResponse.Equals(expectedResponse))
             {
-                Console.WriteLine("Response are not equal");
+                Assert.Fail("Expected Response is " + JsonConvert.SerializeObject(expectedResponse) + " but actual response  is " + JsonConvert.SerializeObject(actualResponse)); ;
             }
         }
     }

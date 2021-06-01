@@ -5,5 +5,5 @@ CAST(categories.updatedAt as VARCHAR) as updatedAt,
 CAST(categories.createdAt as VARCHAR) as createdAt 
 from categories INNER JOIN productcategory 
 on categories.id = productcategory.categoryId INNER JOIN 
-products on products.id = productcategory.productId ORDER by 
-products.id ASC LIMIT 42
+products on products.id = productcategory.productId WHERE products.id = @productid ORDER by 
+products.id ASC

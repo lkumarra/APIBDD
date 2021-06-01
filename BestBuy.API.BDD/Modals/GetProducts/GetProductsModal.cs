@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BestBuy.API.BDD.Modals.GetProducts
 {
-    class GetProductsModal 
+    class GetProductsModal
     {
         public int total { get; set; }
         public int limit { get; set; }
@@ -19,7 +19,7 @@ namespace BestBuy.API.BDD.Modals.GetProducts
                    total == modal.total &&
                    limit == modal.limit &&
                    skip == modal.skip &&
-                   EqualityComparer<List<Datum>>.Default.Equals(data, modal.data);
+                   data.SequenceEqual(modal.data);
         }
 
         public override int GetHashCode()
@@ -35,11 +35,29 @@ namespace BestBuy.API.BDD.Modals.GetProducts
 
     class Category
     {
-        public long productid { get; set; }
         public string id { get; set; }
         public string name { get; set; }
         public string createdAt { get; set; }
         public string updatedAt { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Category category &&
+                   id == category.id &&
+                   name == category.name &&
+                   createdAt == category.createdAt &&
+                   updatedAt == category.updatedAt;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 1799605657;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(id);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(createdAt);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(updatedAt);
+            return hashCode;
+        }
     }
 
     class Datum
@@ -75,7 +93,7 @@ namespace BestBuy.API.BDD.Modals.GetProducts
                    image == datum.image &&
                    createdAt == datum.createdAt &&
                    updatedAt == datum.updatedAt &&
-                   EqualityComparer<List<Category>>.Default.Equals(categories, datum.categories);
+                   categories.SequenceEqual(datum.categories);
         }
 
         public override int GetHashCode()

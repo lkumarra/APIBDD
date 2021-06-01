@@ -7,6 +7,6 @@
     },
     "livingDocGenerator": {
         "enabled": true,
-        "filePath": "SnapBDDTestExecution.json"
+        "filePath": "APIBDD.json"
     }
 }
