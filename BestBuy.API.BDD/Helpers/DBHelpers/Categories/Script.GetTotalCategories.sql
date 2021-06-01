@@ -1,0 +1,1 @@
+﻿select categories.id as total from categories

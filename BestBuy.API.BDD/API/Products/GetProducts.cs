@@ -27,7 +27,7 @@ namespace BestBuy.API.BDD.API.Products
         public void VerifyProductsFromDB()
         {
             GetProductsModal actualResponse = JsonConvert.DeserializeObject<GetProductsModal>(_resposeWrapper.Content);
-            DataTable table = GetProductsDBHelper.GetAllProductsFromDB();
+            DataTable table = ProductsDBHelper.GetAllProductsFromDB();
             List<Datum> data = table.AsEnumerable().Select(r => new Datum()
             {
                 id = r.Field<long>("id"),
@@ -43,18 +43,18 @@ namespace BestBuy.API.BDD.API.Products
                 image = r.Field<string>("image"),
                 createdAt = r.Field<string>("createdAt").Replace(" +00:00","Z").Replace(" ","T"),
                 updatedAt = r.Field<string>("updatedAt").Replace(" +00:00", "Z").Replace(" ", "T"),
-                categories = GetProductsDBHelper.GetFilterdCategories(r.Field<long>("id"))
+                categories = ProductsDBHelper.GetFilterdCategories(r.Field<long>("id"))
             }).ToList();
             GetProductsModal expectedResponse = new GetProductsModal()
             {
-                total = GetProductsDBHelper.GetTotalProductsCount(),
+                total = ProductsDBHelper.GetTotalProductsCount(),
                 limit = 10,
                 skip = 0,
                 data = data
             };
             if (!actualResponse.Equals(expectedResponse))
             {
-                Assert.Fail("Expected Response is " + JsonConvert.SerializeObject(expectedResponse) + " but actual response  is " + JsonConvert.SerializeObject(actualResponse)); ;
+                Assert.Fail("Expected Response is " + JsonConvert.SerializeObject(expectedResponse) + " but actual response  is " + JsonConvert.SerializeObject(actualResponse));
             }
         }
     }

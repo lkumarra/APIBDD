@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BestBuy.API.BDD.Helpers.DBHelpers.Products
 {
-    class GetProductsDBHelper
+    class ProductsDBHelper
     {
         private static readonly string ScriptPath = ConfigHelper.BasePath + @"\Helpers\DBHelpers\Products\";
 

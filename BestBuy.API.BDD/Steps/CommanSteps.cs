@@ -19,7 +19,7 @@ namespace BestBuy.API.BDD.Steps
 
         }
 
-        [Then(@"I get the response code '(.*)'")]
+        [Then(@".* list returned with status code '(.*)'")]
         public void ThenIGetTheResponseCode(int statuscode)
         {
             this.baseAPI.VerifyResponse(statuscode);

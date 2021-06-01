@@ -13,7 +13,7 @@ namespace BestBuy.API.BDD.Wrapper
     {
         static string DataBasePath = ConfigurationManager.AppSettings["SqlClientPath"];
 
-        
+
         public static DataTable ExecuteQuery(string query, List<SQLiteParameter> parameters = null)
         {
             // Create a new database connection:
@@ -25,7 +25,7 @@ namespace BestBuy.API.BDD.Wrapper
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.StackTrace);
             }
             SQLiteDataReader sqlite_datareader;
             SQLiteCommand sqlite_cmd;
@@ -34,7 +34,7 @@ namespace BestBuy.API.BDD.Wrapper
             sqlite_cmd.CommandType = CommandType.Text;
             if (parameters != null)
             {
-                foreach(var param in parameters)
+                foreach (var param in parameters)
                 {
                     sqlite_cmd.Parameters.Add(param);
                 }
