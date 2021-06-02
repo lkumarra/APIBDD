@@ -7,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BestBuy.API.BDD.API.Products
 {
@@ -19,11 +17,17 @@ namespace BestBuy.API.BDD.API.Products
 
         }
 
+        /// <summary>
+        /// Execute GetProductsAPI
+        /// </summary>
         public void ExecuteProductsAPI()
         {
             _resposeWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
         }
 
+        /// <summary>
+        /// Verify the products List from DB
+        /// </summary>
         public void VerifyProductsFromDB()
         {
             GetProductsModal actualResponse = JsonConvert.DeserializeObject<GetProductsModal>(_resposeWrapper.Content);

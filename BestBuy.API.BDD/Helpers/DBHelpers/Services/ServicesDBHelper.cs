@@ -12,6 +12,10 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Services
     {
         private static readonly string ScriptPath = ConfigHelper.BasePath + @"\Helpers\DBHelpers\Services\";
 
+        /// <summary>
+        /// Get services list from db
+        /// </summary>
+        /// <returns></returns>
         public static List<Datum> GetServicesList()
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetServices.sql");
@@ -24,6 +28,10 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Services
             }));
         }
 
+        /// <summary>
+        /// Get total services count from db
+        /// </summary>
+        /// <returns></returns>
         public static int GetTotalServicesCount()
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetTotalServices.sql");

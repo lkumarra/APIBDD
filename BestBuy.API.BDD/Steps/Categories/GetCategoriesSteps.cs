@@ -1,6 +1,5 @@
 ﻿using BestBuy.API.BDD.API;
 using BestBuy.API.BDD.API.Categories;
-using System;
 using TechTalk.SpecFlow;
 
 namespace BestBuy.API.BDD.Steps.Categories

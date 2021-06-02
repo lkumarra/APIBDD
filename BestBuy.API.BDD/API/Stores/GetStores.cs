@@ -3,11 +3,6 @@ using BestBuy.API.BDD.Helpers.DBHelpers.Stores;
 using BestBuy.API.BDD.Modals.Strores;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BestBuy.API.BDD.API.Stores
 {
@@ -18,11 +13,17 @@ namespace BestBuy.API.BDD.API.Stores
 
         }
 
+        /// <summary>
+        /// Execute GetStores API from DB.
+        /// </summary>
         public void ExecuteGetStoresBaseAPI()
         {
             _resposeWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
         }
 
+        /// <summary>
+        /// Verify Stores List from DB
+        /// </summary>
         public void VerifyResponseFromDB()
         {
             GetStoresModal actualResponse = JsonConvert.DeserializeObject<GetStoresModal>(_resposeWrapper.Content);

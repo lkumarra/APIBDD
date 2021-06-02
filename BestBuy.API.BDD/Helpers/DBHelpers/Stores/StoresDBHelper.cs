@@ -6,8 +6,6 @@ using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BestBuy.API.BDD.Helpers.DBHelpers.Stores
 {
@@ -15,6 +13,10 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Stores
     {
         private static readonly string ScriptPath = ConfigHelper.BasePath + @"\Helpers\DBHelpers\Stores\";
 
+        /// <summary>
+        /// Get all stores list from Db
+        /// </summary>
+        /// <returns></returns>
         public static List<Datum> GetStoresList()
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetStores.sql");
@@ -38,6 +40,11 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Stores
             }));
         }
 
+        /// <summary>
+        /// Get Services list from db 
+        /// </summary>
+        /// <param name="storeid">Store Id to get related services</param>
+        /// <returns></returns>
         public static List<Service> GetServicesList(long storeid)
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetServices.sql");
@@ -63,6 +70,10 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Stores
             }));
         }
 
+        /// <summary>
+        /// Get Total store record from Db
+        /// </summary>
+        /// <returns></returns>
         public static int GetTotalStoresCount()
         {
 

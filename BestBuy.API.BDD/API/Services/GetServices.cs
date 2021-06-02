@@ -13,11 +13,17 @@ namespace BestBuy.API.BDD.API.Services
 
         }
 
+        /// <summary>
+        /// Execute GetServices API
+        /// </summary>
         public void ExecuteGetServicesAPI()
         {
             _resposeWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
         }
 
+        /// <summary>
+        /// Verify the services list from DB
+        /// </summary>
         public void VerifyServicesListFromDB()
         {
             GetServicesModal actualResponse = JsonConvert.DeserializeObject<GetServicesModal>(_resposeWrapper.Content);

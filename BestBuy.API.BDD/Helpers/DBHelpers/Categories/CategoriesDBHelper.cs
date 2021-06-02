@@ -1,13 +1,11 @@
 ﻿using BestBuy.API.BDD.Modals.Categories;
 using BestBuy.API.BDD.Wrapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BestBuy.API.BDD.Helpers.DBHelpers.Categories
 {
@@ -15,6 +13,10 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Categories
     {
         private static readonly string ScriptPath = ConfigHelper.BasePath + @"\Helpers\DBHelpers\Categories\";
 
+        /// <summary>
+        /// Get Categories list from DB.
+        /// </summary>
+        /// <returns></returns>
         public static List<Datum> GetCategoriesList()
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetCategories.sql");
@@ -30,6 +32,11 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Categories
             }));
         }
 
+        /// <summary>
+        /// Get Subcategories related to categories
+        /// </summary>
+        /// <param name="categoryId">Category id to fetch subcategories</param>
+        /// <returns></returns>
         public static List<SubCategory> GetSubCategoriesList(string categoryId)
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetSubCategories.sql");
@@ -49,6 +56,11 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Categories
             }));
         }
 
+        /// <summary>
+        /// Get Category path from DB
+        /// </summary>
+        /// <param name="categoryId">Category id to fetch category path</param>
+        /// <returns></returns>
         public static List<CategoryPath> GetCategoryPathList(string categoryId)
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetCategoryPath.sql");
@@ -68,6 +80,10 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Categories
             }));
         }
 
+        /// <summary>
+        /// Get total Category count from DB
+        /// </summary>
+        /// <returns></returns>
         public static int GetTotalCategoriesCount()
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetTotalCategories.sql");

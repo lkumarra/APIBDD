@@ -1,10 +1,5 @@
 ﻿using BestBuy.API.BDD.API;
 using BestBuy.API.BDD.API.Products;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace BestBuy.API.BDD.Steps.Products

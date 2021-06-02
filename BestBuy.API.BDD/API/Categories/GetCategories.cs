@@ -13,11 +13,17 @@ namespace BestBuy.API.BDD.API.Categories
 
         }
 
+        /// <summary>
+        /// Execute GetCategories API
+        /// </summary>
         public void ExecuteGetCategoriesAPI()
         {
             _resposeWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
         }
 
+        /// <summary>
+        /// Verify the Categories List from DB
+        /// </summary>
         public void VerifyCategoriesListFromDB()
         {
             GetCategoriesModal actualResponse = JsonConvert.DeserializeObject<GetCategoriesModal>(_resposeWrapper.Content);

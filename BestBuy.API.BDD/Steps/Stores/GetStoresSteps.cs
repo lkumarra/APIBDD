@@ -1,6 +1,5 @@
 ﻿using BestBuy.API.BDD.API;
 using BestBuy.API.BDD.API.Stores;
-using System;
 using TechTalk.SpecFlow;
 
 namespace BestBuy.API.BDD.Steps.Products
