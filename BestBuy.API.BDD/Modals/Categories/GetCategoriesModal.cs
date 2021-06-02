@@ -48,6 +48,16 @@ namespace BestBuy.API.BDD.Modals.Categories
                    createdAt == category.createdAt &&
                    updatedAt == category.updatedAt;
         }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 1799605657;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(id);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(createdAt);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(updatedAt);
+            return hashCode;
+        }
     }
 
     public class CategoryPath

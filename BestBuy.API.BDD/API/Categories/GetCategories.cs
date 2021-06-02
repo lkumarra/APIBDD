@@ -3,11 +3,6 @@ using BestBuy.API.BDD.Helpers.DBHelpers.Categories;
 using BestBuy.API.BDD.Modals.Categories;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BestBuy.API.BDD.API.Categories
 {

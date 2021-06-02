@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace BestBuy.API.BDD.Features.Products
+namespace BestBuy.API.BDD.Features.Services
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,26 +20,26 @@ namespace BestBuy.API.BDD.Features.Products
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.8.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("GetProducts")]
-    [NUnit.Framework.CategoryAttribute("Products")]
-    public partial class GetProductsFeature
+    [NUnit.Framework.DescriptionAttribute("GetServices")]
+    [NUnit.Framework.CategoryAttribute("Services")]
+    public partial class GetServicesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "Products"};
+                "Services"};
         
-#line 1 "GetProducts.feature"
+#line 1 "GetServices.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Products", "GetProducts", "\tIn Order to get products\r\n\tI want to told to verify products\r\n\tAPI :- GET /produ" +
-                    "cts", ProgrammingLanguage.CSharp, new string[] {
-                        "Products"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Services", "GetServices", "\tIn Order to get services\r\n\tI want to told to verify services\r\n\tAPI :- GET /servi" +
+                    "ces", ProgrammingLanguage.CSharp, new string[] {
+                        "Services"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,14 +78,14 @@ namespace BestBuy.API.BDD.Features.Products
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get All Products")]
+        [NUnit.Framework.DescriptionAttribute("Get All Services")]
         [NUnit.Framework.CategoryAttribute("GetProducts")]
-        public virtual void GetAllProducts()
+        public virtual void GetAllServices()
         {
             string[] tagsOfScenario = new string[] {
                     "GetProducts"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get All Products", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get All Services", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -110,13 +110,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I am a valid user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.When("I get all products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I get all services", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.Then("Products list returned with status code \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Services list returned with status code \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
- testRunner.And("Verify the products list from Db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Verify the services list from Db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
