@@ -1,6 +1,7 @@
 ﻿using BestBuy.API.BDD.Modals.GetProducts;
 using BestBuy.API.BDD.Modals.Products;
 using BestBuy.API.BDD.Wrapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
@@ -86,5 +87,40 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Products
             string script = File.ReadAllText(ScriptPath + "Script.DeleteAddedProduct.sql");
             ExecuteDBWrapper.ExecuteNonQuery(script);
         }
+
+        public static void CreatedProductData()
+        {
+            string script = File.ReadAllText(ScriptPath + "Script.AddProduct.sql");
+            ExecuteDBWrapper.ExecuteNonQuery(script);
+        }
+
+        public static List<Datum> GetProductsViaId(int id)
+        {
+            string script = File.ReadAllText(ScriptPath + "Script.GetProductViaId.sql");
+            return ExecuteDBWrapper.ExecuteQuery(script, new List<SQLiteParameter>() {
+                new SQLiteParameter()
+                {
+                    ParameterName = "@id",
+                    Value = id
+                }
+            }).AsEnumerable().Select(r => new Datum()
+            {
+                id = r.Field<long>("id"),
+                name = r.Field<string>("name"),
+                type = r.Field<string>("type"),
+                price = r.Field<Decimal>("price"),
+                upc = r.Field<string>("upc"),
+                shipping = r.Field<Decimal>("shipping"),
+                description = r.Field<string>("description"),
+                manufacturer = r.Field<string>("manufacturer"),
+                model = r.Field<string>("model"),
+                url = r.Field<string>("url"),
+                image = r.Field<string>("image"),
+                createdAt = r.Field<string>("createdAt")?.Replace(" +00:00", "Z").Replace(" ", "T"),
+                updatedAt = r.Field<string>("updatedAt")?.Replace(" +00:00", "Z").Replace(" ", "T"),
+                categories = ProductsDBHelper.GetFilterdCategories(r.Field<long>("id"))
+            }).ToList();
+        }
+
     }
 }

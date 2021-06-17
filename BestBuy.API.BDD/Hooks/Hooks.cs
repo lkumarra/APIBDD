@@ -19,6 +19,12 @@ namespace BestBuy.API.BDD.Hooks
             ProductsDBHelper.DeleteAddedProductFromDB();
         }
 
+        [BeforeFeature(tags: new string[] { "DeleteProducts" }, Order = 2)]
+        public static void CreateProductData()
+        {
+            ProductsDBHelper.CreatedProductData();
+        }
+
         [BeforeScenario]
         public void BeforeScenario()
         {

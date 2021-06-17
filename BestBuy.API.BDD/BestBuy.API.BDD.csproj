@@ -51,6 +51,9 @@
 	  <None Update="Helpers\DBHelpers\Categories\Script.GetTotalCategories.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Helpers\DBHelpers\Products\Script.AddProduct.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Helpers\DBHelpers\Products\Script.DeleteAddedProduct.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
@@ -59,6 +62,9 @@
 	  </None>
 	  <None Update="Helpers\DBHelpers\Products\Script.GetProducts.sql">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Helpers\DBHelpers\Products\Script.GetProductViaId.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Helpers\DBHelpers\Products\Script.GetProductViaName.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -15,7 +15,7 @@ Scenario: Post a products
 Scenario Outline: Post a products with inavalid data
 	Given I am a valid user
 	When I try create a product with name as '<Name>', type as '<type>', price as '<price>', shipping as '<shipping>', upc as '<upc>',description as '<description>',manufacturer as '<manufacturer>', model as '<model>', url as '<url>' image as '<image>'
-	Then Products should be created with status code '400'
+	Then Products should not be created with status code '400'
 
 	Examples:
 		| Scenario                                         | Name        | type        | price | shipping | upc       | description      | manufacturer      | model      | url      | image      |
