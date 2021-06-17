@@ -42,5 +42,33 @@ namespace BestBuy.API.BDD.Wrapper
             sqlite_conn.Close();
             return table;
         }
+
+        public static void ExecuteNonQuery(string query, List<SQLiteParameter> parameters = null)
+        {
+            // Create a new database connection:
+            SQLiteConnection sqlite_conn = new SQLiteConnection(DataBasePath);
+            // Open the connection:
+            try
+            {
+                sqlite_conn.Open();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = query;
+            sqlite_cmd.CommandType = CommandType.Text;
+            if (parameters != null)
+            {
+                foreach (var param in parameters)
+                {
+                    sqlite_cmd.Parameters.Add(param);
+                }
+            }
+            int rowsAffected = sqlite_cmd.ExecuteNonQuery();
+            sqlite_conn.Close();
+        }
     }
 }

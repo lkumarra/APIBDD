@@ -19,5 +19,11 @@ namespace BestBuy.API.BDD.Steps
         {
             this.baseAPI.VerifyResponse(statuscode);
         }
+
+        [Then(@".* should be created with status code '(.*)'")]
+        public void ThenProductsShouldBeCreatedWithStatusCode(int statusCode)
+        {
+            this.baseAPI.VerifyResponse(statusCode);
+        }
     }
 }

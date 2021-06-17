@@ -1,4 +1,5 @@
 ﻿using BestBuy.API.BDD.Helpers.APIHelpers;
+using BestBuy.API.BDD.Helpers.DBHelpers.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,12 @@ namespace BestBuy.API.BDD.Hooks
     public sealed class Hooks
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
+
+        [BeforeFeature(tags: new string[] { "PostProducts" }, Order = 1)]
+        public static void DeleteProductFromDB()
+        {
+            ProductsDBHelper.DeleteAddedProductFromDB();
+        }
 
         [BeforeScenario]
         public void BeforeScenario()

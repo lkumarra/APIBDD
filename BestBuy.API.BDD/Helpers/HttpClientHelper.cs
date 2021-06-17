@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BestBuy.API.BDD.Helpers
@@ -94,9 +95,10 @@ namespace BestBuy.API.BDD.Helpers
             return SendRequest(baseUri + requestUrl, HttpMethod.Get, httpHeaders);
         }
 
-        public ResponseWrapper PerformPostRequest(string requestUrl, HttpContent httpContent, Dictionary<string, string> httpHeaders = null)
+        public ResponseWrapper PerformPostRequest(string requestUrl, string httpContent, Dictionary<string, string> httpHeaders = null)
         {
-            return SendRequest(baseUri + requestUrl, HttpMethod.Post, httpContent, httpHeaders);
+            HttpContent content = new StringContent(httpContent, Encoding.UTF8, "application/json");
+            return SendRequest(baseUri + requestUrl, HttpMethod.Post, content, httpHeaders);
         }
 
         public ResponseWrapper PerformDeleteRequest(string requestUrl, Dictionary<string, string> httpHeaders = null)

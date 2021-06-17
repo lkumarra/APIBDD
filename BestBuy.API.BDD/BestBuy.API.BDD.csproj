@@ -51,11 +51,17 @@
 	  <None Update="Helpers\DBHelpers\Categories\Script.GetTotalCategories.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Helpers\DBHelpers\Products\Script.DeleteAddedProduct.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Helpers\DBHelpers\Products\Script.GetCategoriesFilterd.sql">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Helpers\DBHelpers\Products\Script.GetProducts.sql">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Helpers\DBHelpers\Products\Script.GetProductViaName.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Helpers\DBHelpers\Products\Script.GetTotalProductsCount.sql">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
