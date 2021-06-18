@@ -1,0 +1,1 @@
+﻿delete from products where products.id = 999999

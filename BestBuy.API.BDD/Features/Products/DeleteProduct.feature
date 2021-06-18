@@ -7,6 +7,6 @@ Feature: Delete Product
 @GetProducts
 Scenario: Delete product via Id.
 	Given I am a valid user
-	When I delete 'DeletedProductTest'  product
+	When I delete 'AddedProduct'  product
 	Then Product should be deleted with status code '200'
 	And Verify product deleted from DB.

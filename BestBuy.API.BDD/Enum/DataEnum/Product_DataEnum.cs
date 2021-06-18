@@ -12,6 +12,7 @@ namespace BestBuy.API.BDD.Enum.DataEnum
         Energizer = 150115,
         Metra=33179,
         Jensen = 373642,
-        DeletedProductTest = 999999
+        AddedProduct = 999999,
+        Invalid = 0,
     }
 }

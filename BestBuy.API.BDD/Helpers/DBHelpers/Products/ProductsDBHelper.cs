@@ -122,5 +122,11 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Products
             }).ToList();
         }
 
+        public static void DeleteProductData()
+        {
+            string script = File.ReadAllText(ScriptPath + "Script.DeleteProductById.sql");
+            ExecuteDBWrapper.ExecuteNonQuery(script);
+        }
+
     }
 }

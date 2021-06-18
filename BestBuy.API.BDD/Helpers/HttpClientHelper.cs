@@ -105,5 +105,12 @@ namespace BestBuy.API.BDD.Helpers
         {
             return SendRequest(baseUri + requestUrl, HttpMethod.Delete, httpHeaders);
         }
+
+        public ResponseWrapper PerformPatchRequest(string requestUrl, string httpContent, Dictionary<string, string> httpHeaders = null)
+        {
+
+            HttpContent content = new StringContent(httpContent, Encoding.UTF8, "application/json");
+            return SendRequest(baseUri + requestUrl, HttpMethod.Put, content, httpHeaders);
+        }
     }
 }

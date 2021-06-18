@@ -57,6 +57,9 @@
 	  <None Update="Helpers\DBHelpers\Products\Script.DeleteAddedProduct.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Helpers\DBHelpers\Products\Script.DeleteProductById.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Helpers\DBHelpers\Products\Script.GetCategoriesFilterd.sql">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
