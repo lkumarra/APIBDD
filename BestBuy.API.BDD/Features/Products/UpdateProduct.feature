@@ -12,7 +12,7 @@ Scenario: Update a product
 	And Verify product updated in Db.
 
 @GetProducts @NegativeScenario
-Scenario Outline: Update a product with inavalid data
+Scenario Outline: Update a product with invalid data
 	Given I am a valid user
 	When I try to update a product with prductId as '<ProductId>', name as '<Name>', type as '<type>', price as '<price>', shipping as '<shipping>', upc as '<upc>',description as '<description>',manufacturer as '<manufacturer>', model as '<model>', url as '<url>' image as '<image>'
 	Then Products should not be updated with status code '<statuscode>'

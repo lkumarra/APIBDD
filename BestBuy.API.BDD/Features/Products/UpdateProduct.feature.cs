@@ -128,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Update a product with inavalid data")]
+        [NUnit.Framework.DescriptionAttribute("Update a product with invalid data")]
         [NUnit.Framework.CategoryAttribute("GetProducts")]
         [NUnit.Framework.CategoryAttribute("NegativeScenario")]
         [NUnit.Framework.TestCaseAttribute("Try to update product with producrId as Invalid", "Invalid", "UpdatedName", "UpdatedType", "1", "1", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "404", null)]
@@ -148,7 +148,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Try to create product with url as empty", "AddedProduct", "UpdatedName", "UpdatedType", "26", "26", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "EMPTY", "AddedImage", "400", null)]
         [NUnit.Framework.TestCaseAttribute("Try to create product with image as null", "AddedProduct", "UpdatedName", "UpdatedType", "28", "28", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "NULL", "400", null)]
         [NUnit.Framework.TestCaseAttribute("Try to create product with image as empty", "AddedProduct", "UpdatedName", "UpdatedType", "29", "29", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "EMPTY", "400", null)]
-        public virtual void UpdateAProductWithInavalidData(string scenario, string productId, string name, string type, string price, string shipping, string upc, string description, string manufacturer, string model, string url, string image, string statuscode, string[] exampleTags)
+        public virtual void UpdateAProductWithInvalidData(string scenario, string productId, string name, string type, string price, string shipping, string upc, string description, string manufacturer, string model, string url, string image, string statuscode, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "GetProducts",
@@ -172,7 +172,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("url", url);
             argumentsOfScenario.Add("image", image);
             argumentsOfScenario.Add("statuscode", statuscode);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update a product with inavalid data", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update a product with invalid data", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

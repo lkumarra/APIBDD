@@ -1,4 +1,5 @@
 ﻿using BestBuy.API.BDD.Helpers.APIHelpers;
+using BestBuy.API.BDD.Helpers.DBHelpers.Categories;
 using BestBuy.API.BDD.Helpers.DBHelpers.Products;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,12 @@ namespace BestBuy.API.BDD.Hooks
         {
             ProductsDBHelper.DeleteProductData();
             ProductsDBHelper.CreatedProductData();
+        }
+
+        [BeforeFeature(tags: new string[] { "PostCategories" }, Order = 3)]
+        public static void DeleteCategoryData()
+        {
+            CategoriesDBHelper.DeleteCategory();
         }
 
         [BeforeScenario]

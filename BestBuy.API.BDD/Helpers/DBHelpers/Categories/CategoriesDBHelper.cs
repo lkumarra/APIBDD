@@ -90,5 +90,49 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Categories
             DataTable table = ExecuteDBWrapper.ExecuteQuery(script);
             return table.Rows.Count;
         }
+
+        public static void DeleteCategory()
+        {
+            string script = File.ReadAllText(ScriptPath + "Script.DeleteCategory.sql");
+            ExecuteDBWrapper.ExecuteNonQuery(script);
+        }
+
+        public static List<PostCategoriesModal> GetCategoriesViaId(string id)
+        {
+            string script = File.ReadAllText(ScriptPath + "Script.GetCategoryViaId.sql");
+            DataTable table = ExecuteDBWrapper.ExecuteQuery(script, new List<SQLiteParameter>() {
+                new SQLiteParameter()
+                {
+                    ParameterName = "@id",
+                    Value = id
+                }
+            });
+            return new List<PostCategoriesModal>(table.AsEnumerable().Select(cp => new PostCategoriesModal()
+            {
+                id = cp.Field<string>("id"),
+                name = cp.Field<string>("name"),
+            }));
+        }
+
+        public static List<Datum> GetCategoryListViaId(string id)
+        {
+            string script = File.ReadAllText(ScriptPath + "Script.GetCategoryViaId.sql");
+            DataTable table = ExecuteDBWrapper.ExecuteQuery(script, new List<SQLiteParameter>() {
+                new SQLiteParameter()
+                {
+                    ParameterName = "@id",
+                    Value = id
+                }
+            });
+            return new List<Datum>(table.AsEnumerable().Select(c => new Datum()
+            {
+                id = c.Field<string>("id"),
+                name = c.Field<string>("name"),
+                createdAt = c.Field<string>("createdAt")?.Replace(" +00:00", "Z").Replace(" ", "T"),
+                updatedAt = c.Field<string>("updatedAt")?.Replace(" +00:00", "Z").Replace(" ", "T"),
+                subCategories = CategoriesDBHelper.GetSubCategoriesList(c.Field<string>("id")),
+                categoryPath = CategoriesDBHelper.GetCategoryPathList(c.Field<string>("id"))
+            }));
+        }
     }
 }

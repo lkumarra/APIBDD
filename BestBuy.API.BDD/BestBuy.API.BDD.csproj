@@ -39,10 +39,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Helpers\APIEndPointGenerator.cs">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Helpers\DBHelpers\Categories\Script.DeleteCategory.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Helpers\DBHelpers\Categories\Script.GetCategories.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Helpers\DBHelpers\Categories\Script.GetCategoryPath.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Helpers\DBHelpers\Categories\Script.GetCategoryViaId.sql">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Helpers\DBHelpers\Categories\Script.GetSubCategories.sql">
