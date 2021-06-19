@@ -8,18 +8,18 @@ Feature: Post Categories
 Scenario: Create a category
 	Given I am a valid user
 	When I create a category with id as 'AddedCategoriesId' and name as 'AddedCategoryName'
-	Then Categories shoould be created with status code '201'
+	Then Categories should be created with status code '201'
 	And Verify Category created in DB.
 
 @PostCategories @NegativeScenario
 Scenario Outline: Create a category with Invalid data.
 	Given I am a valid user
 	When I try to create a category with id as '<Id>'and name as '<Name>'
-	Then Categories shoould not be created with status code '400'
+	Then Categories should not be created with name as '<errorName>',message as '<message>', status code '400' and errors as '<errors>'
 
 	Examples:
-		| Scenario                                    | Id      | Name      |
-		| Try to create a category with Id as null    | NULL    | AddedName |
-		| Try to create a category with Id as Empty   | EMPTY   | AddedName |
-		| Try to create a category with name as null  | AddedId | NULL      |
-		| Try to create a category with name as Empty | AddedId | EMPTY     |
+		| Scenario                                    | Id      | Name      | errorName  | message            | errors                                         |
+		| Try to create a category with Id as null    | NULL    | AddedName | BadRequest | Invalid Parameters | 'id' should be string                          |
+		| Try to create a category with Id as Empty   | EMPTY   | AddedName | BadRequest | Invalid Parameters | 'id' should NOT be shorter than 1 characters   |
+		| Try to create a category with name as null  | AddedId | NULL      | BadRequest | Invalid Parameters | 'name' should be string                        |
+		| Try to create a category with name as Empty | AddedId | EMPTY     | BadRequest | Invalid Parameters | 'name' should NOT be shorter than 1 characters |

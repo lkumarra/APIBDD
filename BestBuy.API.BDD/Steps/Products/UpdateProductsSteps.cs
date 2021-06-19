@@ -1,6 +1,7 @@
 ﻿using BestBuy.API.BDD.API;
 using BestBuy.API.BDD.API.Products;
 using BestBuy.API.BDD.Enum.DataEnum;
+using BestBuy.API.BDD.Helpers.ResponseValidator;
 using BestBuy.API.BDD.Helpers.StringExtension;
 using System;
 using TechTalk.SpecFlow;
@@ -10,11 +11,11 @@ namespace BestBuy.API.BDD.Steps.Products
     [Binding]
     public class UpdateProductsSteps
     {
-        private UpdateProducts _updateProducts;
+        UpdateProducts _updateProducts;
 
-        UpdateProductsSteps(ScenarioContext context)
+        UpdateProductsSteps(ResponseValidator responseValidator,ScenarioContext context)
         {
-            _updateProducts = new UpdateProducts();
+            _updateProducts = new UpdateProducts(responseValidator);
             context.Set<BaseAPI>(_updateProducts);
         }
 

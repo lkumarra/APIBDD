@@ -1,14 +1,15 @@
 ﻿using BestBuy.API.BDD.Helpers;
 using BestBuy.API.BDD.Helpers.DBHelpers.Services;
+using BestBuy.API.BDD.Interface;
 using BestBuy.API.BDD.Modals.Services;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace BestBuy.API.BDD.API.Services
 {
-    class GetServices:BaseAPI
+    class GetServices : BaseAPI
     {
-        public GetServices() : base("/services")
+        public GetServices(IResponseValidator responseValidator) : base("/services", responseValidator)
         {
 
         }
@@ -18,7 +19,7 @@ namespace BestBuy.API.BDD.API.Services
         /// </summary>
         public void ExecuteGetServicesAPI()
         {
-            _resposeWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
+            _response.responseWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
         }
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace BestBuy.API.BDD.API.Services
         /// </summary>
         public void VerifyServicesListFromDB()
         {
-            GetServicesModal actualResponse = JsonConvert.DeserializeObject<GetServicesModal>(_resposeWrapper.Content);
+            GetServicesModal actualResponse = JsonConvert.DeserializeObject<GetServicesModal>(_response.responseWrapper.Content);
             GetServicesModal expectedResponse = new GetServicesModal()
             {
                 total = ServicesDBHelper.GetTotalServicesCount(),

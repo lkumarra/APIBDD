@@ -1,4 +1,5 @@
-﻿using BestBuy.API.BDD.Wrapper;
+﻿using BestBuy.API.BDD.Interface;
+using BestBuy.API.BDD.Wrapper;
 using NUnit.Framework;
 
 
@@ -7,11 +8,12 @@ namespace BestBuy.API.BDD.API
     class BaseAPI
     {
         protected string _endpoint;
-        protected static ResponseWrapper _resposeWrapper;
+        protected static IResponseValidator _response;
 
-        public BaseAPI(string endpoint)
+        public BaseAPI(string endpoint, IResponseValidator response)
         {
             _endpoint = endpoint;
+            _response = response;
         }
 
         public BaseAPI()
@@ -19,12 +21,9 @@ namespace BestBuy.API.BDD.API
 
         }
 
-        public virtual void VerifyResponse(int statusCode)
+        public void VerifyResponse(ResponseModalWrapper responseWrapper)
         {
-            if (_resposeWrapper.StatusCode != statusCode)
-            {
-                Assert.Fail("Expected status code is " + statusCode + " but actual status code is " + _resposeWrapper.StatusCode);
-            }
+            _response.VerifyResponse(responseWrapper);
         }
     }
 }

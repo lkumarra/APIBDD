@@ -1,5 +1,6 @@
 ﻿using BestBuy.API.BDD.Helpers;
 using BestBuy.API.BDD.Helpers.DBHelpers.Categories;
+using BestBuy.API.BDD.Interface;
 using BestBuy.API.BDD.Modals.Categories;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -16,7 +17,7 @@ namespace BestBuy.API.BDD.API.Categories
         private PostCategoriesModal _postCategoriesModal;
         private string _id;
 
-        public PostCategories() : base("/categories")
+        public PostCategories(IResponseValidator responseValidator) : base("/categories", responseValidator)
         {
 
         }
@@ -29,7 +30,7 @@ namespace BestBuy.API.BDD.API.Categories
                 id = id,
                 name = name,
             };
-            _resposeWrapper = ConfigHelper._httpClientHelper.PerformPostRequest(_endpoint, JsonConvert.SerializeObject(_postCategoriesModal));
+            _response.responseWrapper = ConfigHelper._httpClientHelper.PerformPostRequest(_endpoint, JsonConvert.SerializeObject(_postCategoriesModal));
         }
 
         internal void VerifyCategoryCreatedInDb()

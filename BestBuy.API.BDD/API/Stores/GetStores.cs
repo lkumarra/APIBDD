@@ -1,5 +1,6 @@
 ﻿using BestBuy.API.BDD.Helpers;
 using BestBuy.API.BDD.Helpers.DBHelpers.Stores;
+using BestBuy.API.BDD.Interface;
 using BestBuy.API.BDD.Modals.Strores;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -8,7 +9,7 @@ namespace BestBuy.API.BDD.API.Stores
 {
     class GetStores : BaseAPI
     {
-        public GetStores() : base("/stores")
+        public GetStores(IResponseValidator responseValidator) : base("/stores", responseValidator)
         {
 
         }
@@ -18,7 +19,7 @@ namespace BestBuy.API.BDD.API.Stores
         /// </summary>
         public void ExecuteGetStoresBaseAPI()
         {
-            _resposeWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
+            _response.responseWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
         }
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace BestBuy.API.BDD.API.Stores
         /// </summary>
         public void VerifyResponseFromDB()
         {
-            GetStoresModal actualResponse = JsonConvert.DeserializeObject<GetStoresModal>(_resposeWrapper.Content);
+            GetStoresModal actualResponse = JsonConvert.DeserializeObject<GetStoresModal>(_response.responseWrapper.Content);
             GetStoresModal expectedResponse = new GetStoresModal()
             {
                 total = StoresDBHelper.GetTotalStoresCount(),

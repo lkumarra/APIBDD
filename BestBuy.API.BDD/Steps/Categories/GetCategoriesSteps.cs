@@ -1,5 +1,6 @@
 ﻿using BestBuy.API.BDD.API;
 using BestBuy.API.BDD.API.Categories;
+using BestBuy.API.BDD.Helpers.ResponseValidator;
 using TechTalk.SpecFlow;
 
 namespace BestBuy.API.BDD.Steps.Categories
@@ -9,9 +10,9 @@ namespace BestBuy.API.BDD.Steps.Categories
     {
         GetCategories getCategories;
 
-        GetCategoriesSteps(ScenarioContext scenario)
+        GetCategoriesSteps(ResponseValidator responseValidator, ScenarioContext scenario)
         {
-            getCategories = new GetCategories();
+            getCategories = new GetCategories(responseValidator);
             scenario.Set<BaseAPI>(getCategories);
         }
 

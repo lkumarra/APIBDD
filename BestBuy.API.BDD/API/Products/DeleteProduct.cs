@@ -1,5 +1,6 @@
 ﻿using BestBuy.API.BDD.Helpers;
 using BestBuy.API.BDD.Helpers.DBHelpers.Products;
+using BestBuy.API.BDD.Interface;
 using BestBuy.API.BDD.Modals.GetProducts;
 using NUnit.Framework;
 using System;
@@ -14,7 +15,7 @@ namespace BestBuy.API.BDD.API.Products
     {
         private int _id;
 
-        public DeleteProduct() : base("/products")
+        public DeleteProduct(IResponseValidator responseValidator) : base("/products", responseValidator)
         {
 
         }
@@ -22,7 +23,7 @@ namespace BestBuy.API.BDD.API.Products
         public void ExecuteDeleteProductAPI(int id)
         {
             _id = id;
-            _resposeWrapper = ConfigHelper._httpClientHelper.PerformDeleteRequest(_endpoint + "/" + id.ToString());
+            _response.responseWrapper = ConfigHelper._httpClientHelper.PerformDeleteRequest(_endpoint + "/" + id.ToString());
         }
 
         public void VerifyProductDeletedFromDB()

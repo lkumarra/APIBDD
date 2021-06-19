@@ -1,6 +1,7 @@
 ﻿using BestBuy.API.BDD.API;
 using BestBuy.API.BDD.API.Categories;
 using BestBuy.API.BDD.Enum.DataEnum;
+using BestBuy.API.BDD.Helpers.ResponseValidator;
 using System;
 using TechTalk.SpecFlow;
 
@@ -9,11 +10,11 @@ namespace BestBuy.API.BDD.Steps.Categories
     [Binding]
     public class GetCategoriesViaIDSteps
     {
-        private GetCategoryViaId _getCategoriesViaId;
+        GetCategoryViaId _getCategoriesViaId;
 
-        public GetCategoriesViaIDSteps(ScenarioContext context)
+        GetCategoriesViaIDSteps(ResponseValidator responseValidator,ScenarioContext context)
         {
-            _getCategoriesViaId = new GetCategoryViaId();
+            _getCategoriesViaId = new GetCategoryViaId(responseValidator);
             context.Set<BaseAPI>(_getCategoriesViaId);
         }
 

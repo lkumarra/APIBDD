@@ -1,5 +1,6 @@
 ﻿using BestBuy.API.BDD.Helpers;
 using BestBuy.API.BDD.Helpers.DBHelpers.Products;
+using BestBuy.API.BDD.Interface;
 using BestBuy.API.BDD.Modals.GetProducts;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -14,7 +15,7 @@ namespace BestBuy.API.BDD.API.Products
     class GetProductViaId : BaseAPI
     {
         private int _id;
-        public GetProductViaId() : base("/products")
+        public GetProductViaId(IResponseValidator responseValidator) : base("/products", responseValidator)
         {
 
         }
@@ -22,12 +23,12 @@ namespace BestBuy.API.BDD.API.Products
         public void ExecuteGetProductViaIDAPI(int id)
         {
             _id = id;
-            _resposeWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint + "/" + id);
+            _response.responseWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint + "/" + id);
         }
 
         public void VerifyProductFromDB()
         {
-            Datum actualResponse = JsonConvert.DeserializeObject<Datum>(_resposeWrapper.Content);
+            Datum actualResponse = JsonConvert.DeserializeObject<Datum>(_response.responseWrapper.Content);
             Datum expectedResponse = ProductsDBHelper.GetProductsViaId(_id).FirstOrDefault();
             if (!actualResponse.Equals(expectedResponse))
             {

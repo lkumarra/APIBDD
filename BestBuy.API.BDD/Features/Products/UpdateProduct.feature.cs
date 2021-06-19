@@ -131,24 +131,41 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Update a product with invalid data")]
         [NUnit.Framework.CategoryAttribute("GetProducts")]
         [NUnit.Framework.CategoryAttribute("NegativeScenario")]
-        [NUnit.Framework.TestCaseAttribute("Try to update product with producrId as Invalid", "Invalid", "UpdatedName", "UpdatedType", "1", "1", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "404", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with name as null", "AddedProduct", "NULL", "UpdatedType", "1", "1", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with name as null", "AddedProduct", "EMPTY", "UpdatedType", "2", "2", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with type as null", "AddedProduct", "UpdatedName", "NULL", "4", "4", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with type as empty", "AddedProduct", "UpdatedName", "EMPTY", "5", "5", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with upc as null", "AddedProduct", "UpdatedName", "UpdatedType", "13", "13", "NULL", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with upc as empty", "AddedProduct", "UpdatedName", "UpdatedType", "14", "14", "EMPTY", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with description as null", "AddedProduct", "UpdatedName", "UpdatedType", "16", "16", "AddedUpc1", "NULL", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with description as empty", "AddedProduct", "UpdatedName", "UpdatedType", "17", "17", "AddedUpc1", "EMPTY", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with manufacturer as null", "AddedProduct", "UpdatedName", "UpdatedType", "19", "19", "AddedUpc1", "AddedDescription", "NULL", "AddedModel", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with manufacturer as empty", "AddedProduct", "UpdatedName", "UpdatedType", "20", "20", "AddedUpc1", "AddedDescription", "EMPTY", "AddedModel", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with model as null", "AddedProduct", "UpdatedName", "UpdatedType", "22", "22", "AddedUpc1", "AddedDescription", "AddedManufacturer", "NULL", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with model as empty", "AddedProduct", "UpdatedName", "UpdatedType", "23", "23", "AddedUpc1", "AddedDescription", "AddedManufacturer", "EMPTY", "AddedUrl", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with url as null", "AddedProduct", "UpdatedName", "UpdatedType", "25", "25", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "NULL", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with url as empty", "AddedProduct", "UpdatedName", "UpdatedType", "26", "26", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "EMPTY", "AddedImage", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with image as null", "AddedProduct", "UpdatedName", "UpdatedType", "28", "28", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "NULL", "400", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create product with image as empty", "AddedProduct", "UpdatedName", "UpdatedType", "29", "29", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "EMPTY", "400", null)]
-        public virtual void UpdateAProductWithInvalidData(string scenario, string productId, string name, string type, string price, string shipping, string upc, string description, string manufacturer, string model, string url, string image, string statuscode, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Try to update product with productId as Invalid", "Invalid", "UpdatedName", "UpdatedType", "1", "1", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "404", "NotFound", "No record found for id \'0\'", "", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with name as null", "AddedProduct", "NULL", "UpdatedType", "1", "1", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'name\' should be string", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with name as null", "AddedProduct", "EMPTY", "UpdatedType", "2", "2", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'name\' should NOT be shorter than 1 characters", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with type as null", "AddedProduct", "UpdatedName", "NULL", "4", "4", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'type\' should be string", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with type as empty", "AddedProduct", "UpdatedName", "EMPTY", "5", "5", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'type\' should NOT be shorter than 1 characters", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with upc as null", "AddedProduct", "UpdatedName", "UpdatedType", "13", "13", "NULL", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'upc\' should be string", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with upc as empty", "AddedProduct", "UpdatedName", "UpdatedType", "14", "14", "EMPTY", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'upc\' should NOT be shorter than 1 characters", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with description as null", "AddedProduct", "UpdatedName", "UpdatedType", "16", "16", "AddedUpc1", "NULL", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'description\' should be string", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with description as empty", "AddedProduct", "UpdatedName", "UpdatedType", "17", "17", "AddedUpc1", "EMPTY", "AddedManufacturer", "AddedModel", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'description\' should NOT be shorter than 1 characters", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with manufacturer as null", "AddedProduct", "UpdatedName", "UpdatedType", "19", "19", "AddedUpc1", "AddedDescription", "NULL", "AddedModel", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'manufacturer\' should be string", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with manufacturer as empty", "AddedProduct", "UpdatedName", "UpdatedType", "20", "20", "AddedUpc1", "AddedDescription", "EMPTY", "AddedModel", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'manufacturer\' should NOT be shorter than 1 characters", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with model as null", "AddedProduct", "UpdatedName", "UpdatedType", "22", "22", "AddedUpc1", "AddedDescription", "AddedManufacturer", "NULL", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'model\' should be string", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with model as empty", "AddedProduct", "UpdatedName", "UpdatedType", "23", "23", "AddedUpc1", "AddedDescription", "AddedManufacturer", "EMPTY", "AddedUrl", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'model\' should NOT be shorter than 1 characters", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with url as null", "AddedProduct", "UpdatedName", "UpdatedType", "25", "25", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "NULL", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'url\' should be string", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with url as empty", "AddedProduct", "UpdatedName", "UpdatedType", "26", "26", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "EMPTY", "AddedImage", "400", "BadRequest", "Invalid Parameters", "\'url\' should NOT be shorter than 1 characters", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with image as null", "AddedProduct", "UpdatedName", "UpdatedType", "28", "28", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "NULL", "400", "BadRequest", "Invalid Parameters", "\'image\' should be string", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create product with image as empty", "AddedProduct", "UpdatedName", "UpdatedType", "29", "29", "AddedUpc1", "AddedDescription", "AddedManufacturer", "AddedModel", "AddedUrl", "EMPTY", "400", "BadRequest", "Invalid Parameters", "\'image\' should NOT be shorter than 1 characters", null)]
+        public virtual void UpdateAProductWithInvalidData(
+                    string scenario, 
+                    string productId, 
+                    string name, 
+                    string type, 
+                    string price, 
+                    string shipping, 
+                    string upc, 
+                    string description, 
+                    string manufacturer, 
+                    string model, 
+                    string url, 
+                    string image, 
+                    string statuscode, 
+                    string errorName, 
+                    string message, 
+                    string errors, 
+                    string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "GetProducts",
@@ -172,6 +189,9 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("url", url);
             argumentsOfScenario.Add("image", image);
             argumentsOfScenario.Add("statuscode", statuscode);
+            argumentsOfScenario.Add("errorName", errorName);
+            argumentsOfScenario.Add("message", message);
+            argumentsOfScenario.Add("errors", errors);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update a product with invalid data", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 15
 this.ScenarioInitialize(scenarioInfo);
@@ -202,7 +222,8 @@ this.ScenarioInitialize(scenarioInfo);
                             " as \'{7}\', model as \'{8}\', url as \'{9}\' image as \'{10}\'", productId, name, type, price, shipping, upc, description, manufacturer, model, url, image), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.Then(string.Format("Products should not be updated with status code \'{0}\'", statuscode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("Products should not be updated with name as \'{0}\',message as \'{1}\', status code \'" +
+                            "{2}\' and errors as \'{3}\'", errorName, message, statuscode, errors), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

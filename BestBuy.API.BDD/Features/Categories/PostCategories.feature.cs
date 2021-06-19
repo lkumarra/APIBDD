@@ -119,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.Then("Categories shoould be created with status code \'201\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Categories should be created with status code \'201\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
  testRunner.And("Verify Category created in DB.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -132,11 +132,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Create a category with Invalid data.")]
         [NUnit.Framework.CategoryAttribute("PostCategories")]
         [NUnit.Framework.CategoryAttribute("NegativeScenario")]
-        [NUnit.Framework.TestCaseAttribute("Try to create a category with Id as null", "NULL", "AddedName", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create a category with Id as Empty", "EMPTY", "AddedName", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create a category with name as null", "AddedId", "NULL", null)]
-        [NUnit.Framework.TestCaseAttribute("Try to create a category with name as Empty", "AddedId", "EMPTY", null)]
-        public virtual void CreateACategoryWithInvalidData_(string scenario, string id, string name, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Try to create a category with Id as null", "NULL", "AddedName", "BadRequest", "Invalid Parameters", "\'id\' should be string", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create a category with Id as Empty", "EMPTY", "AddedName", "BadRequest", "Invalid Parameters", "\'id\' should NOT be shorter than 1 characters", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create a category with name as null", "AddedId", "NULL", "BadRequest", "Invalid Parameters", "\'name\' should be string", null)]
+        [NUnit.Framework.TestCaseAttribute("Try to create a category with name as Empty", "AddedId", "EMPTY", "BadRequest", "Invalid Parameters", "\'name\' should NOT be shorter than 1 characters", null)]
+        public virtual void CreateACategoryWithInvalidData_(string scenario, string id, string name, string errorName, string message, string errors, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "PostCategories",
@@ -150,6 +150,9 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Scenario", scenario);
             argumentsOfScenario.Add("Id", id);
             argumentsOfScenario.Add("Name", name);
+            argumentsOfScenario.Add("errorName", errorName);
+            argumentsOfScenario.Add("message", message);
+            argumentsOfScenario.Add("errors", errors);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a category with Invalid data.", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 15
 this.ScenarioInitialize(scenarioInfo);
@@ -178,7 +181,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("I try to create a category with id as \'{0}\'and name as \'{1}\'", id, name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.Then("Categories shoould not be created with status code \'400\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("Categories should not be created with name as \'{0}\',message as \'{1}\', status code" +
+                            " \'400\' and errors as \'{2}\'", errorName, message, errors), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -1,5 +1,6 @@
 ﻿using BestBuy.API.BDD.Helpers;
 using BestBuy.API.BDD.Helpers.DBHelpers.Categories;
+using BestBuy.API.BDD.Interface;
 using BestBuy.API.BDD.Modals.Categories;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -8,7 +9,7 @@ namespace BestBuy.API.BDD.API.Categories
 {
     class GetCategories : BaseAPI
     {
-        public GetCategories() : base("/categories")
+        public GetCategories(IResponseValidator responseValidator) : base("/categories", responseValidator)
         {
 
         }
@@ -18,7 +19,7 @@ namespace BestBuy.API.BDD.API.Categories
         /// </summary>
         public void ExecuteGetCategoriesAPI()
         {
-            _resposeWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
+            _response.responseWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
         }
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace BestBuy.API.BDD.API.Categories
         /// </summary>
         public void VerifyCategoriesListFromDB()
         {
-            GetCategoriesModal actualResponse = JsonConvert.DeserializeObject<GetCategoriesModal>(_resposeWrapper.Content);
+            GetCategoriesModal actualResponse = JsonConvert.DeserializeObject<GetCategoriesModal>(_response.responseWrapper.Content);
             GetCategoriesModal expectedResponse = new GetCategoriesModal()
             {
                 data = CategoriesDBHelper.GetCategoriesList(),

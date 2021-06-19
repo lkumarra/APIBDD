@@ -1,5 +1,6 @@
 ﻿using BestBuy.API.BDD.Helpers;
 using BestBuy.API.BDD.Helpers.DBHelpers.Products;
+using BestBuy.API.BDD.Interface;
 using BestBuy.API.BDD.Modals.GetProducts;
 using BestBuy.API.BDD.Modals.Products;
 using Newtonsoft.Json;
@@ -17,7 +18,7 @@ namespace BestBuy.API.BDD.API.Products
         private string _name;
         private PostProductModal _productsModal;
 
-        public UpdateProducts() : base("/products")
+        public UpdateProducts(IResponseValidator responseValidator) : base("/products", responseValidator)
         {
 
         }
@@ -38,7 +39,7 @@ namespace BestBuy.API.BDD.API.Products
                 url = url,
                 image = image
             };
-            _resposeWrapper = ConfigHelper._httpClientHelper.PerformPatchRequest(_endpoint+"/"+id, JsonConvert.SerializeObject(_productsModal));
+            _response.responseWrapper = ConfigHelper._httpClientHelper.PerformPatchRequest(_endpoint+"/"+id, JsonConvert.SerializeObject(_productsModal));
         }
 
         internal void VerifyProductUpdatedInDb()

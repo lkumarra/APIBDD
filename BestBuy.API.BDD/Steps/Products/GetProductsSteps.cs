@@ -1,5 +1,6 @@
 ﻿using BestBuy.API.BDD.API;
 using BestBuy.API.BDD.API.Products;
+using BestBuy.API.BDD.Helpers.ResponseValidator;
 using TechTalk.SpecFlow;
 
 namespace BestBuy.API.BDD.Steps.Products
@@ -9,9 +10,9 @@ namespace BestBuy.API.BDD.Steps.Products
     {
         GetProducts getProducts;
 
-        GetProductsSteps(ScenarioContext context)
+        GetProductsSteps(ResponseValidator responseValidator, ScenarioContext context)
         {
-            getProducts = new GetProducts();
+            getProducts = new GetProducts(responseValidator);
             context.Set<BaseAPI>(getProducts);
         }
 

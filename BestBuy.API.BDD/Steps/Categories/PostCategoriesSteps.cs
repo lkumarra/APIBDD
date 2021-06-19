@@ -1,5 +1,6 @@
 ﻿using BestBuy.API.BDD.API;
 using BestBuy.API.BDD.API.Categories;
+using BestBuy.API.BDD.Helpers.ResponseValidator;
 using BestBuy.API.BDD.Helpers.StringExtension;
 using System;
 using TechTalk.SpecFlow;
@@ -9,11 +10,11 @@ namespace BestBuy.API.BDD.Steps.Categories
     [Binding]
     public class PostCategoriesSteps
     {
-        private PostCategories _postCategories;
+        PostCategories _postCategories;
 
-        public PostCategoriesSteps(ScenarioContext context)
+        PostCategoriesSteps(ResponseValidator responseValidator,ScenarioContext context)
         {
-            _postCategories = new PostCategories();
+            _postCategories = new PostCategories(responseValidator);
             context.Set<BaseAPI>(_postCategories);
         }
         [When(@"I try to create a category with id as '(.*)'and name as '(.*)'")]

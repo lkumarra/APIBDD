@@ -1,6 +1,7 @@
 ﻿using BestBuy.API.BDD.API;
 using BestBuy.API.BDD.API.Products;
 using BestBuy.API.BDD.Enum.DataEnum;
+using BestBuy.API.BDD.Helpers.ResponseValidator;
 using System;
 using TechTalk.SpecFlow;
 
@@ -9,10 +10,11 @@ namespace BestBuy.API.BDD.Steps.Products
     [Binding]
     public class GetProductViaIdSteps
     {
-        private GetProductViaId _getProductViaId;
-        GetProductViaIdSteps(ScenarioContext context)
+        GetProductViaId _getProductViaId;
+
+        GetProductViaIdSteps(ResponseValidator responseValidator,ScenarioContext context)
         {
-            _getProductViaId = new GetProductViaId();
+            _getProductViaId = new GetProductViaId(responseValidator);
             context.Set<BaseAPI>(_getProductViaId);
         }
         [When(@"I get '(.*)' product")]

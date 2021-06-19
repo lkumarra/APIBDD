@@ -10,5 +10,6 @@ namespace BestBuy.API.BDD.Wrapper
     {
         public int StatusCode { get; set; }
         public string Content { get; set; }
+
     }
 }

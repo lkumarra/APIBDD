@@ -1,6 +1,7 @@
 ﻿using BestBuy.API.BDD.API;
 using BestBuy.API.BDD.API.Products;
 using BestBuy.API.BDD.Enum.DataEnum;
+using BestBuy.API.BDD.Helpers.ResponseValidator;
 using System;
 using TechTalk.SpecFlow;
 
@@ -9,11 +10,11 @@ namespace BestBuy.API.BDD.Steps.Products
     [Binding]
     public class DeleteProductSteps
     {
-        private DeleteProduct _deleteProduct;
+        DeleteProduct _deleteProduct;
 
-        DeleteProductSteps(ScenarioContext context)
+        DeleteProductSteps(ResponseValidator responseValidator,ScenarioContext context)
         {
-            _deleteProduct = new DeleteProduct();
+            _deleteProduct = new DeleteProduct(responseValidator);
             context.Set<BaseAPI>(_deleteProduct);
         }
 

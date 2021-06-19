@@ -1,5 +1,6 @@
 ﻿using BestBuy.API.BDD.Helpers;
 using BestBuy.API.BDD.Helpers.DBHelpers.Products;
+using BestBuy.API.BDD.Interface;
 using BestBuy.API.BDD.Modals.GetProducts;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -12,7 +13,7 @@ namespace BestBuy.API.BDD.API.Products
 {
     class GetProducts : BaseAPI
     {
-        public GetProducts() : base("/products")
+        public GetProducts(IResponseValidator responseValidator) : base("/products", responseValidator)
         {
 
         }
@@ -22,7 +23,7 @@ namespace BestBuy.API.BDD.API.Products
         /// </summary>
         public void ExecuteProductsAPI()
         {
-            _resposeWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
+            _response.responseWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint);
         }
 
         /// <summary>
@@ -30,7 +31,7 @@ namespace BestBuy.API.BDD.API.Products
         /// </summary>
         public void VerifyProductsFromDB()
         {
-            GetProductsModal actualResponse = JsonConvert.DeserializeObject<GetProductsModal>(_resposeWrapper.Content);
+            GetProductsModal actualResponse = JsonConvert.DeserializeObject<GetProductsModal>(_response.responseWrapper.Content);
             DataTable table = ProductsDBHelper.GetAllProductsFromDB();
             List<Datum> data = table.AsEnumerable().Select(r => new Datum()
             {
