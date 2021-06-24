@@ -20,12 +20,19 @@ namespace BestBuy.API.BDD.API.Products
 
         }
 
+        /// <summary>
+        /// Execute Delete /product/{id} API
+        /// </summary>
+        /// <param name="id">Id to delete category</param>
         public void ExecuteDeleteProductAPI(int id)
         {
             _id = id;
             _response.responseWrapper = ConfigHelper._httpClientHelper.PerformDeleteRequest(_endpoint + "/" + id.ToString());
         }
 
+        /// <summary>
+        /// Verify product is deleted from DB.
+        /// </summary>
         public void VerifyProductDeletedFromDB()
         {
             Datum datum = ProductsDBHelper.GetProductsViaId(_id).FirstOrDefault();

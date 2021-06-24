@@ -16,6 +16,10 @@ namespace BestBuy.API.BDD.API
             _response = response;
         }
 
+        /// <summary>
+        /// Verify response returned by hitting API
+        /// </summary>
+        /// <param name="responseWrapper"></param>
         public void VerifyResponse(ResponseModalWrapper responseWrapper)
         {
             _response.VerifyResponse(responseWrapper);

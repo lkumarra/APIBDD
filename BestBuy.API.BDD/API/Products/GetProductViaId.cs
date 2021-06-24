@@ -15,17 +15,25 @@ namespace BestBuy.API.BDD.API.Products
     class GetProductViaId : BaseAPI
     {
         private int _id;
+
         public GetProductViaId(IResponseValidator responseValidator) : base("/products", responseValidator)
         {
 
         }
 
+        /// <summary>
+        /// Execute Get /product/{id} API
+        /// </summary>
+        /// <param name="id"></param>
         public void ExecuteGetProductViaIDAPI(int id)
         {
             _id = id;
             _response.responseWrapper = ConfigHelper._httpClientHelper.PerformGetRequest(_endpoint + "/" + id);
         }
 
+        /// <summary>
+        /// Verify product returned in response from DB
+        /// </summary>
         public void VerifyProductFromDB()
         {
             Datum actualResponse = JsonConvert.DeserializeObject<Datum>(_response.responseWrapper.Content);

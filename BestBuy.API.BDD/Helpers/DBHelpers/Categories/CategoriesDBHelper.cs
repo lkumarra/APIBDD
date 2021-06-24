@@ -91,12 +91,20 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Categories
             return table.Rows.Count;
         }
 
+        /// <summary>
+        /// Delete the category from DB
+        /// </summary>
         public static void DeleteCategory()
         {
             string script = File.ReadAllText(ScriptPath + "Script.DeleteCategory.sql");
             ExecuteDBWrapper.ExecuteNonQuery(script);
         }
 
+        /// <summary>
+        /// Get the category via ID.
+        /// </summary>
+        /// <param name="id">Id to get category</param>
+        /// <returns>List<PostCategoriesModal></returns>
         public static List<PostCategoriesModal> GetCategoriesViaId(string id)
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetCategoryViaId.sql");
@@ -114,6 +122,11 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Categories
             }));
         }
 
+        /// <summary>
+        /// Get categories via ID.
+        /// </summary>
+        /// <param name="id">Id to get categories</param>
+        /// <returns>List<Datum></returns>
         public static List<Datum> GetCategoryListViaId(string id)
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetCategoryViaId.sql");

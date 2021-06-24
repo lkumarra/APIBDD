@@ -2,7 +2,7 @@
 Feature: Update Products
 	In Order to post products
 	I want to told to verify products
-	API :- PATCH /products
+	API :- PATCH /products/{id}
 
 @GetProducts @PositiveScenatio
 Scenario: Update a product

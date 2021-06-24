@@ -58,6 +58,11 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Products
             return ExecuteDBWrapper.ExecuteQuery(script).Rows.Count;
         }
 
+        /// <summary>
+        /// Get product added in DB Via name
+        /// </summary>
+        /// <param name="name">Name of the product</param>
+        /// <returns>List<PostProductModal></returns>
         public static List<PostProductModal> GetProductAddedInDB(string name)
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetProductViaName.sql");
@@ -82,18 +87,29 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Products
             }).ToList();
         }
 
+        /// <summary>
+        /// Delete product from DB
+        /// </summary>
         public static void DeleteAddedProductFromDB()
         {
             string script = File.ReadAllText(ScriptPath + "Script.DeleteAddedProduct.sql");
             ExecuteDBWrapper.ExecuteNonQuery(script);
         }
 
+        /// <summary>
+        /// Add product in DB
+        /// </summary>
         public static void CreatedProductData()
         {
             string script = File.ReadAllText(ScriptPath + "Script.AddProduct.sql");
             ExecuteDBWrapper.ExecuteNonQuery(script);
         }
 
+        /// <summary>
+        /// Get product via ID
+        /// </summary>
+        /// <param name="id">Id to get product</param>
+        /// <returns>List<Datum></returns>
         public static List<Datum> GetProductsViaId(int id)
         {
             string script = File.ReadAllText(ScriptPath + "Script.GetProductViaId.sql");
@@ -122,6 +138,9 @@ namespace BestBuy.API.BDD.Helpers.DBHelpers.Products
             }).ToList();
         }
 
+        /// <summary>
+        /// Delete the product data
+        /// </summary>
         public static void DeleteProductData()
         {
             string script = File.ReadAllText(ScriptPath + "Script.DeleteProductById.sql");

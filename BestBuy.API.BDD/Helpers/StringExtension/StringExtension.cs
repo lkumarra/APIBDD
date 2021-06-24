@@ -8,6 +8,11 @@ namespace BestBuy.API.BDD.Helpers.StringExtension
 {
     static class StringExtension
     {
+        /// <summary>
+        /// Generate a string on the basis of input string
+        /// </summary>
+        /// <param name="inputStr">Input String</param>
+        /// <returns>Requested string</returns>
         public static string RequestStringParser(this string inputStr)
         {
             return inputStr.Equals(Constants.NullString) ? null

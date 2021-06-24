@@ -10,7 +10,12 @@ namespace BestBuy.API.BDD.Wrapper
     {
         static string DataBasePath = ConfigurationManager.AppSettings["SqlClientPath"];
 
-
+        /// <summary>
+        /// Execute a DB query
+        /// </summary>
+        /// <param name="query">Query to execute</param>
+        /// <param name="parameters">Parameter to pass in query</param>
+        /// <returns>Datatable of result</returns>
         public static DataTable ExecuteQuery(string query, List<SQLiteParameter> parameters = null)
         {
             // Create a new database connection:
@@ -43,6 +48,11 @@ namespace BestBuy.API.BDD.Wrapper
             return table;
         }
 
+        /// <summary>
+        /// Execute Non-Query in DB
+        /// </summary>
+        /// <param name="query">Query to execute</param>
+        /// <param name="parameters">Parameters to add</param>
         public static void ExecuteNonQuery(string query, List<SQLiteParameter> parameters = null)
         {
             // Create a new database connection:

@@ -12,6 +12,9 @@ namespace BestBuy.API.BDD.Helpers.APIHelpers
     {
         static Process process1 = null;
 
+        /// <summary>
+        /// Start the API Server
+        /// </summary>
         public static void StartAPIServer()
         {
             var pp = new ProcessStartInfo("cmd.exe", "/C" + ConfigurationManager.AppSettings["ServerCommand"])
@@ -23,6 +26,9 @@ namespace BestBuy.API.BDD.Helpers.APIHelpers
             process1 = Process.Start(pp);
         }
 
+        /// <summary>
+        /// Stop the API Server
+        /// </summary>
         public static void StopAPIServer()
         {
             if (process1 != null)

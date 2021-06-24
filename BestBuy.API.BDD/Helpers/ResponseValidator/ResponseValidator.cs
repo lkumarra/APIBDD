@@ -15,6 +15,10 @@ namespace BestBuy.API.BDD.Helpers.ResponseValidator
     {
         public ResponseWrapper responseWrapper { get; set; }
 
+        /// <summary>
+        /// Verify the Response returned in response
+        /// </summary>
+        /// <param name="responseModalWrapper">ResponseModalWrapper</param>
         public void VerifyResponse(ResponseModalWrapper responseModalWrapper)
         {
             if (responseWrapper.StatusCode != responseModalWrapper.code)

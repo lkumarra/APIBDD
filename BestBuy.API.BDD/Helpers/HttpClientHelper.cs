@@ -15,6 +15,11 @@ namespace BestBuy.API.BDD.Helpers
         private ResponseWrapper restResponse;
         private string baseUri = ConfigurationManager.AppSettings["BaseUri"];
 
+        /// <summary>
+        /// Add Header to HTTP Client
+        /// </summary>
+        /// <param name="httpHeaders">Dictionary of headers</param>
+        /// <returns>HttpClient</returns>
         private HttpClient AddHeaderToHttpClient(Dictionary<string, string> httpHeaders = null)
         {
             HttpClient httpClient = new HttpClient();
@@ -26,45 +31,31 @@ namespace BestBuy.API.BDD.Helpers
             return httpClient;
         }
 
-        private HttpRequestMessage CreateHttpRequestMessage(string requestUrl, HttpMethod httpMethod)
+        /// <summary>
+        /// Create HttpRequestMessage 
+        /// </summary>
+        /// <param name="requestUrl">Request Url</param>
+        /// <param name="httpMethod">HttpMethod</param>
+        /// <returns>HttpRequestMessage</returns>
+        private HttpRequestMessage CreateHttpRequestMessage(string requestUrl, HttpMethod httpMethod, HttpContent httpContent = null)
         {
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, requestUrl);
+            if (httpContent != null)
+            {
+                httpRequestMessage.Content = httpContent;
+            }
             return httpRequestMessage;
         }
 
-        private HttpRequestMessage CreateHttpRequestMessage(string requestUrl, HttpMethod httpMethod, HttpContent httpContent)
-        {
-            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, requestUrl);
-            httpRequestMessage.Content = httpContent;
-            return httpRequestMessage;
-        }
-
-        private ResponseWrapper SendRequest(string requestUrl, HttpMethod httpMethod, Dictionary<string, string> httpHeaders = null)
-        {
-            httpClient = AddHeaderToHttpClient(httpHeaders);
-            httpRequestMessage = CreateHttpRequestMessage(requestUrl, httpMethod);
-            Task<HttpResponseMessage> httpResponseMessage = httpClient.SendAsync(httpRequestMessage);
-            try
-            {
-                restResponse = new ResponseWrapper()
-                {
-                    StatusCode = (int)httpResponseMessage.Result.StatusCode,
-                    Content = httpResponseMessage.Result.Content.ReadAsStringAsync().Result
-                };
-            }
-            catch (Exception err)
-            {
-                restResponse = new ResponseWrapper() { StatusCode = 500, Content = err.Message };
-            }
-            finally
-            {
-                httpRequestMessage?.Dispose();
-                httpClient?.Dispose();
-            }
-            return restResponse;
-        }
-
-        private ResponseWrapper SendRequest(string requestUrl, HttpMethod httpMethod, HttpContent httpContent, Dictionary<string, string> httpHeaders = null)
+        /// <summary>
+        /// Create ResponseWrapper
+        /// </summary>
+        /// <param name="requestUrl">Request Url</param>
+        /// <param name="httpMethod">Http Method</param>
+        /// <param name="httpContent">Http Content</param>
+        /// <param name="httpHeaders">HttpHeaders</param>
+        /// <returns>ResponseWrapper</returns>
+        private ResponseWrapper SendRequest(string requestUrl, HttpMethod httpMethod, HttpContent httpContent = null, Dictionary<string, string> httpHeaders = null)
         {
             httpClient = AddHeaderToHttpClient(httpHeaders);
             httpRequestMessage = CreateHttpRequestMessage(requestUrl, httpMethod, httpContent);
@@ -90,22 +81,48 @@ namespace BestBuy.API.BDD.Helpers
             return restResponse;
         }
 
+        /// <summary>
+        /// Perform Get Request
+        /// </summary>
+        /// <param name="requestUrl">Request Url</param>
+        /// <param name="httpHeaders">HttpHeaders</param>
+        /// <returns>ResponseWrapper</returns>
         public ResponseWrapper PerformGetRequest(string requestUrl, Dictionary<string, string> httpHeaders = null)
         {
-            return SendRequest(baseUri + requestUrl, HttpMethod.Get, httpHeaders);
+            return SendRequest(baseUri + requestUrl, HttpMethod.Get, null, httpHeaders);
         }
 
+        /// <summary>
+        /// Perform Post Request
+        /// </summary>
+        /// <param name="requestUrl">Request Url</param>
+        /// <param name="httpContent">Content to pass in Body</param>
+        /// <param name="httpHeaders">Http headers to add</param>
+        /// <returns>ResponseWrapper</returns>
         public ResponseWrapper PerformPostRequest(string requestUrl, string httpContent, Dictionary<string, string> httpHeaders = null)
         {
             HttpContent content = new StringContent(httpContent, Encoding.UTF8, "application/json");
             return SendRequest(baseUri + requestUrl, HttpMethod.Post, content, httpHeaders);
         }
 
+        /// <summary>
+        /// Perform Delete request
+        /// </summary>
+        /// <param name="requestUrl">Request url</param>
+        /// <param name="httpHeaders">Http headers to add<<</param>
+        /// <returns>ResponseWrapper</returns>
         public ResponseWrapper PerformDeleteRequest(string requestUrl, Dictionary<string, string> httpHeaders = null)
         {
-            return SendRequest(baseUri + requestUrl, HttpMethod.Delete, httpHeaders);
+            return SendRequest(baseUri + requestUrl, HttpMethod.Delete, null, httpHeaders);
         }
 
+        /// <summary>
+        /// Perform patch request
+        /// </summary>
+        /// <param name="requestUrl">Request url</param>
+        /// <param name="httpContent">Content to pass in Body</param>
+        /// <param name="httpHeaders">Http headers to add<</param>
+        /// <returns>ResponseWrapper</returns>
         public ResponseWrapper PerformPatchRequest(string requestUrl, string httpContent, Dictionary<string, string> httpHeaders = null)
         {
 

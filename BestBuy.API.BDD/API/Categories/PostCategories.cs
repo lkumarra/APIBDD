@@ -22,6 +22,11 @@ namespace BestBuy.API.BDD.API.Categories
 
         }
 
+        /// <summary>
+        /// Execute Post /categories API.
+        /// </summary>
+        /// <param name="id">Id of category</param>
+        /// <param name="name">Name of category</param>
         internal void ExecutePostCategoriesAPI(string id, string name)
         {
             _id = id;
@@ -33,6 +38,9 @@ namespace BestBuy.API.BDD.API.Categories
             _response.responseWrapper = ConfigHelper._httpClientHelper.PerformPostRequest(_endpoint, JsonConvert.SerializeObject(_postCategoriesModal));
         }
 
+        /// <summary>
+        /// Verify category created in DB.
+        /// </summary>
         internal void VerifyCategoryCreatedInDb()
         {
             PostCategoriesModal dataInDB = CategoriesDBHelper.GetCategoriesViaId(_id).FirstOrDefault();

@@ -23,6 +23,20 @@ namespace BestBuy.API.BDD.API.Products
 
         }
 
+        /// <summary>
+        /// Execute Put /product API
+        /// </summary>
+        /// <param name="id">Id of the product to update</param>
+        /// <param name="name">Name of the product</param>
+        /// <param name="type">Type of the product</param>
+        /// <param name="price">Price of the product</param>
+        /// <param name="shipping">Shipping of the product</param>
+        /// <param name="upc">Upc of the product</param>
+        /// <param name="description">Description of the product</param>
+        /// <param name="manufacturer">Manufacturer of the product</param>
+        /// <param name="modal">Modal of the product</param>
+        /// <param name="url">Url of the product</param>
+        /// <param name="image">Image of the product</param>
         internal void ExecuteUpdateProductAPI(int id, string name, string type, int price, int shipping, string upc, string description, string manufacturer, string modal, string url, string image)
         {
             _name = name;
@@ -42,6 +56,9 @@ namespace BestBuy.API.BDD.API.Products
             _response.responseWrapper = ConfigHelper._httpClientHelper.PerformPatchRequest(_endpoint+"/"+id, JsonConvert.SerializeObject(_productsModal));
         }
 
+        /// <summary>
+        /// Verify product updated in DB
+        /// </summary>
         internal void VerifyProductUpdatedInDb()
         {
 
