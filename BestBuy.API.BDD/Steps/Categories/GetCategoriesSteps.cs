@@ -10,7 +10,7 @@ namespace BestBuy.API.BDD.Steps.Categories
     {
         GetCategories getCategories;
 
-        GetCategoriesSteps(ResponseValidator responseValidator, ScenarioContext scenario)
+        GetCategoriesSteps(ScenarioContext scenario, ResponseValidator responseValidator)
         {
             getCategories = new GetCategories(responseValidator);
             scenario.Set<BaseAPI>(getCategories);

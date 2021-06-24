@@ -1,6 +1,5 @@
-﻿using BestBuy.API.BDD.Interface;
-using BestBuy.API.BDD.Modals;
-using BestBuy.API.BDD.Modals.ErrorModals;
+﻿using BestBuy.API.BDD.Helpers.JSONParseHelper;
+using BestBuy.API.BDD.Interface;
 using BestBuy.API.BDD.Wrapper;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -24,32 +23,29 @@ namespace BestBuy.API.BDD.Helpers.ResponseValidator
             }
             if (responseWrapper.Content.Contains("name") && responseWrapper.Content.Contains("message") && responseWrapper.Content.Contains("errors") && responseWrapper.Content.Contains("data"))
             {
-                ErrorModal modal = JsonConvert.DeserializeObject<ErrorModal>(responseWrapper.Content);
-                if (!modal.name.Equals(responseModalWrapper.name))
+                if (!JSONParser.GetJSONParsedResult(responseWrapper.Content, "name").Equals(responseModalWrapper.name))
                 {
-                    Assert.Fail("Expected name is " + responseModalWrapper.name + "But actual name is" + modal.name);
+                    Assert.Fail("Expected name is " + responseModalWrapper.name + "But actual name is" + JSONParser.GetJSONParsedResult(responseWrapper.Content, "name"));
                 }
-                if (!modal.message.Equals(responseModalWrapper.message))
+                if (!JSONParser.GetJSONParsedResult(responseWrapper.Content, "message").Equals(responseModalWrapper.message))
                 {
-                    Assert.Fail("Expected message is " + responseModalWrapper.message + "But actual message is" + modal.message);
+                    Assert.Fail("Expected message is " + responseModalWrapper.message + "But actual message is" + JSONParser.GetJSONParsedResult(responseWrapper.Content, "message"));
                 }
-                if (!modal.errors[0].Equals(responseModalWrapper.errors))
+                if (!JSONParser.GetJSONParsedResult(responseWrapper.Content, "errors[0]").Equals(responseModalWrapper.errors))
                 {
-                    Assert.Fail("Expected error is " + responseModalWrapper.errors + "But actual error is" + modal.errors[0]);
+                    Assert.Fail("Expected error is " + responseModalWrapper.errors + "But actual error is" + JSONParser.GetJSONParsedResult(responseWrapper.Content, "errors[0]"));
                 }
             }
             else if (responseWrapper.Content.Contains("name") && responseWrapper.Content.Contains("message") && responseWrapper.Content.Contains("errors"))
             {
-                NotFoundErrorModal notFoundErrorModal = JsonConvert.DeserializeObject<NotFoundErrorModal>(responseWrapper.Content);
-                if (!notFoundErrorModal.name.Equals(responseModalWrapper.name))
+                if (!JSONParser.GetJSONParsedResult(responseWrapper.Content, "name").Equals(responseModalWrapper.name))
                 {
-                    Assert.Fail("Expected name is " + responseModalWrapper.name + "But actual name is" + notFoundErrorModal.name);
+                    Assert.Fail("Expected name is " + responseModalWrapper.name + "But actual name is" + JSONParser.GetJSONParsedResult(responseWrapper.Content, "name"));
                 }
-                if (!notFoundErrorModal.message.Equals(responseModalWrapper.message))
+                if (!JSONParser.GetJSONParsedResult(responseWrapper.Content, "message").Equals(responseModalWrapper.message))
                 {
-                    Assert.Fail("Expected message is " + responseModalWrapper.message + "But actual message is" + notFoundErrorModal.message);
+                    Assert.Fail("Expected message is " + responseModalWrapper.message + "But actual message is" + JSONParser.GetJSONParsedResult(responseWrapper.Content, "message"));
                 }
-
             }
         }
     }

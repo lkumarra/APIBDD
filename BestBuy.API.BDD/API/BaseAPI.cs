@@ -16,11 +16,6 @@ namespace BestBuy.API.BDD.API
             _response = response;
         }
 
-        public BaseAPI()
-        {
-
-        }
-
         public void VerifyResponse(ResponseModalWrapper responseWrapper)
         {
             _response.VerifyResponse(responseWrapper);
